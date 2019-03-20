@@ -15,27 +15,38 @@
 
         <p><input type="button" value="Envoyer le message" id="sendMessage" /></p>
 
+        <label for="to">Video of :</label>
+        <input type="text" id="videoOf" name="name" size="2"/>
+        <label for="to">Playing time :</label>
+        <input type="text" id="time" name="name" size="2"/>
+
+        <p><input type="button" value="Play the video" id="playVideo" /></p>
+
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io.connect('http://localhost:8080');
 
-            // We ask for the id of the client
-            var id = prompt('Identifiant :');
             // We send it to the server
-            socket.emit('identifiant', id);
+            socket.emit('identifiant', 0);
 
             // We display an alert box when we receive a message
             socket.on('messageFrom', function(id, message) {
                 alert(id + ' says : ' + message);
-            })
+            });
+
+            $('#playVideo').click(function () {
+                var clientId = document.getElementById("videoOf").value;
+                var time = document.getElementById("time").value;
+                socket.emit('playVideo', clientId, time);
+            });
 
             // We send the info for a message to someone when clicking the send button
             $('#sendMessage').click(function () {
                 var idToSend = document.getElementById("to").value;
                 var messageToSend = document.getElementById("message").value;
                 socket.emit('messageTo', idToSend, messageToSend);
-            })
+            });
         </script>
     </body>
 </html>

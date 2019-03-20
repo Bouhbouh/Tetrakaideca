@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Socket.io</title>
+    </head>
+
+    <body>
+        <h1>Client on mobile device</h1>
+
+        <video id="video" width="640">
+            <source src="Tokyotest.mp4" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+        </video>
+
+        <ul id="messageList"></ul>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://localhost:8080');
+
+            // We ask for the id of the client
+            var id = prompt('Identifiant :');
+            // We send it to the server
+            socket.emit('identifiant', id);
+
+            // Play he video for the specified time
+            socket.on('playVideo', function(playTime) {
+                playTime = parseInt(playTime);
+                var video = document.getElementById("video");
+                var startTime = video.currentTime;
+                //console.log('startTime : ' + startTime);
+                var endTime = startTime + playTime;
+                //console.log('endTime : ' + endTime);
+                playVideo(video, startTime, endTime);
+            });
+
+            function playVideo(video, startTime, playTime) {
+                function checkTime() {
+                    if (video.currentTime >= playTime) {
+                       video.pause();
+                    } else {
+                       // call checkTime every tenth of a second
+                       setTimeout(checkTime, 100);
+                    }
+                }
+                // We check if the video has reach the end
+                if (video.currentTime != video.duration) {
+                    video.currentTime = startTime;
+                    video.play();
+                    checkTime();
+                // if so, we set it back to 0 to start the video over
+                } else {
+                    video.currentTime = 0;
+                }
+            }
+
+            // We add the message to the list when receiving one
+            socket.on('messageFrom', function(id, message) {
+                console.log('message received');
+                var li = document.createElement('li');
+                li.innerHTML = '<li>' + id + ' said : ' + message + '</li>';
+                document.getElementById("messageList").appendChild(li);
+            });
+        </script>
+    </body>
+</html>

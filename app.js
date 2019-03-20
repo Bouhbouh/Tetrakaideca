@@ -4,27 +4,37 @@ var fs = require('fs');
 // Object associating client choosen IDs with their given IDs at the connexion
 var clients = {};
 
-// Loading index.html for the client
-var server = http.createServer(function(req, res) {
-    fs.readFile('./index.html', 'utf-8', function(error, content) {
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.end(content);
-    });
-});
+// Setting express and socket.io
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
-// Loading socket.io
-var io = require('socket.io').listen(server);
+// Using static files
+app.use(express.static(__dirname + '/node_modules'));
+app.use(express.static(__dirname + '/video'));
+
+// Routing
+app.get('/', function(req, res, next) {
+    res.sendFile(__dirname + '/index.html');
+});
+app.get('/phone', function(req, res, next) {
+    res.sendFile(__dirname + '/phone.html')
+});
 
 io.sockets.on('connection', function (socket, id) {
 
     // When receiving an ID, we store it in the clients Object
     socket.on('identifiant', function(id) {
         console.log(socket.id);
-        //socket.id = id;
-        //console.log(io.sockets.connected);
         clients[id] = socket.id;
         console.log('id of new client : ', clients[id]);
         console.log(clients);
+    });
+
+    socket.on('playVideo', function(id, time) {
+        console.log('request to play video of : ' + id);
+        io.sockets.to(clients[id]).emit('playVideo', time);
     });
 
     // Sending the message to the correct client
@@ -41,5 +51,5 @@ io.sockets.on('connection', function (socket, id) {
     });
 });
 
-console.log("Starting server...")
+console.log('Starting server...');
 server.listen(8080);
