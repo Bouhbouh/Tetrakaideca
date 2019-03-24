@@ -12,7 +12,10 @@ var io = require('socket.io')(server);
 
 // Using static files
 app.use(express.static(__dirname + '/node_modules'));
-app.use(express.static(__dirname + '/video'));
+app.use(express.static(__dirname + '/videos'));
+app.use(express.static(__dirname + '/images'));
+app.use(express.static(__dirname + '/sound'));
+app.use(express.static(__dirname + '/style'));
 
 // Routing
 app.get('/', function(req, res, next) {
@@ -30,6 +33,11 @@ io.sockets.on('connection', function (socket, id) {
         clients[id] = socket.id;
         console.log('id of new client : ', clients[id]);
         console.log(clients);
+    });
+
+    socket.on('choosedVideo', function(id, video) {
+        console.log(id + ' choosed : ' + video);
+        io.sockets.to(clients[0]).emit('choosedVideo', id, video);
     });
 
     socket.on('playVideo', function(id, time) {

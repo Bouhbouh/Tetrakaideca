@@ -3,13 +3,20 @@
     <head>
         <meta charset="utf-8" />
         <title>Socket.io</title>
+        <style>
+            video {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
     </head>
 
     <body>
-        <h1>Client on mobile device</h1>
 
-        <video id="video" width="640">
-            <source src="Tokyotest.mp4" type="video/mp4">
+        <video id="video" controls>
+            <source src="countdown.mp4" type="video/mp4">
             Sorry, your browser doesn't support embedded videos.
         </video>
 
@@ -18,17 +25,34 @@
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
-            var socket = io.connect('http://localhost:8080');
+            //var socket = io.connect('http://localhost:8080');
+            //var socket = io.connect('http://192.168.43.202:8080');
+            var socket = io.connect('http://172.20.10.2:8080');
+
+            var videos = {
+                '1' : 'countdown.mp4',
+                '2' : 'crabe_rav.mp4'
+            };
+            var videoName = {
+                '1' : 'Countdown',
+                '2' : 'Crab Rav'
+            };
 
             // We ask for the id of the client
             var id = prompt('Identifiant :');
             // We send it to the server
             socket.emit('identifiant', id);
 
+            var video = document.getElementById("video");
+            video.src = videos[id];
+            socket.emit('choosedVideo', id, videoName[id]);
+
             // Play he video for the specified time
             socket.on('playVideo', function(playTime) {
+                //var video = document.getElementById("video");
+                // We hide the control panel of the video
+                video.controls = false;
                 playTime = parseInt(playTime);
-                var video = document.getElementById("video");
                 var startTime = video.currentTime;
                 //console.log('startTime : ' + startTime);
                 var endTime = startTime + playTime;
@@ -40,6 +64,9 @@
                 function checkTime() {
                     if (video.currentTime >= playTime) {
                        video.pause();
+                    // We check if the video has reach the end
+                    } else if (video.currentTime == video.duration) {
+                        video.currentTime = 0;
                     } else {
                        // call checkTime every tenth of a second
                        setTimeout(checkTime, 100);
@@ -60,7 +87,7 @@
             socket.on('messageFrom', function(id, message) {
                 console.log('message received');
                 var li = document.createElement('li');
-                li.innerHTML = '<li>' + id + ' said : ' + message + '</li>';
+                li.innerHTML = '<li>Server said : ' + message + '</li>';
                 document.getElementById("messageList").appendChild(li);
             });
         </script>
