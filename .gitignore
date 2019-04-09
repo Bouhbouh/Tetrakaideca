@@ -1,7 +1,6 @@
 # Added
 *.mp4
-*.webm
-*.jpg
+*.bmp
 *.mp3
 
 # Logs
