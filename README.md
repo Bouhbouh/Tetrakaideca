@@ -1,10 +1,29 @@
+# Tetrakaideca
+
+- Partner : Jardin des Plantes de Nantes
+
+- Students :
+    - Simon Bessenay
+    - Guillaume Potier
+    - Tiphaine Besnard
+    - Marion Dallibert
+    - Bastien Dauve
+    - Theo Denechere
+
+
+- Input technology : Leap Motion controller
+
+- Output technology : Mobile devices
+
 # Rubia - iCreate project
 
 ## Introduction
 
-The goal of this project is to create a structure with a technological activity that shows the internationalization of the Botanical Garden of Nantes, and that uses a Leap Motion controller as an input and mobile devices as outputs. Our team is **Tetrakaideca**, and we decided to name our creation **Rubia**.
+The goal of this project is to create a structure with a technological activity that shows the internationalization of the Botanical Garden of Nantes, and that uses a Leap Motion controller as an input and mobile devices as outputs. We decided to name our creation **Rubia**.
 
-## Tetrakaideca - the team
+We propose an introduction video to the user as well as two activites to receive and send seeds all over the world with the interaction of the Leap Motion controller.
+
+## The team
 
 #### École Polytechnique de l'Université de Nantes
 Simon Bessenay, Guillaume Potier, Tiphaine Besnard
@@ -13,6 +32,12 @@ Simon Bessenay, Guillaume Potier, Tiphaine Besnard
 Marion Dallibert, Bastien Dauve, Theo Denechere
 
 ## How to use
+
+#### What is needed
+
+Here is the list of the different devices you need to run the project :
+- 4 mobile devices (phone or tablets) with the Firefox web browser
+- 1 computer with one of the following Operating System : Windows, Linux or MacOS
 
 #### General
 
@@ -58,7 +83,7 @@ Now on a Firefox web browser we need to open the master client by typing the fol
 
     your_IP_address:8080
 
-After starting the main client, we need 4 mobile devices with a Firefox web browser available to type the following address :
+After starting the main client, we need the 4 mobile devices with a Firefox web browser available to type the following address :
 
     your_IP_address:8080/phone
 
