@@ -38,6 +38,7 @@ Marion Dallibert, Bastien Dauve, Theo Denechere
 Here is the list of the different devices you need to run the project :
 - 4 mobile devices (phone or tablets) with the Firefox web browser
 - 1 computer with one of the following Operating System : Windows, Linux or MacOS
+- 1 tablet with the Firefox web browser (not necessary but can replace the screen of the computer)
 
 #### General
 
@@ -79,7 +80,7 @@ With that done, we can now start the server :
 node app
 ```
 
-Now on a Firefox web browser we need to open the master client by typing the following address and port :
+Now on a Firefox web browser we need to open the master client by typing the following address and port this can be done on the 5th tablet or direclty on the computer by using *localhost* instead of the IP address :
 
     your_IP_address:8080
 
