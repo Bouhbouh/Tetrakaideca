@@ -1,10 +1,10 @@
-# Tetrakaideca - iCreate project
+# Rubia - iCreate project
 
-## Goal
+## Introduction
 
-The goal of this project is to create a structure that shows the internationalization of the Botanical Garden of Nantes and that uses a Leap Motion controller as an input and mobile devices as outputs.
+The goal of this project is to create a structure with a technological activity that shows the internationalization of the Botanical Garden of Nantes, and that uses a Leap Motion controller as an input and mobile devices as outputs. Our team is **Tetrakaideca**, and we decided to name our creation **Rubia**.
 
-## The team
+## Tetrakaideca - the team
 
 #### École Polytechnique de l'Université de Nantes
 Simon Bessenay, Guillaume Potier, Tiphaine Besnard
@@ -32,7 +32,9 @@ npm install
 
 To install the Leap Motion on your desktop, please refer to the [documentation](https://www.leapmotion.com/setup/desktop/) on the official website of the device.
 
-After that, there is two configuration, if you want to use our program on the same device that the one the leap is connected to, you have nothing to change. Howewer, if you want to connect the leap on a computer and display our program on a tablet for example, you first need to connect the two device to the same LAN network, then on the device that is connected to the leap, you need to modify the line 28 of pont.py to remplace the IP by the one of the device and run it. Then you need to modify index_leap_motion.html on line 188 to remplace localhost and the port by the one in the line 28 of pont.py. Now you can run index_leap_motion.html on any device that is connected to the LAN on the leap's computer.
+After that, there is two possible configuration :
+- If you want to use our program on the same device that the one the leap is connected to, you have nothing to change.
+- If you want to connect the Leap Motion on a computer and display our program on a tablet for example, you first need to connect the two device to the same LAN network, then on the device that is connected to the leap, you need to modify the line 28 of *pont.py* to remplace the IP by the one of the device and run it. Then you need to modify *index_leap_motion.html* on line 188 to remplace localhost and the port by the one in the line 28 of *pont.py*. Now you can run *index_leap_motion.html* on any device that is connected to the LAN on the Leap's computer.
 
 #### Setup the environment and have fun
 
@@ -65,3 +67,7 @@ With that open, an alert box will ask an id number on each of the 4 devices. We 
 #### Important
 
 It's important to note that none of the medias used by the project are available in this Github repository due to their important size. We can provide them if necessary. They are sorted into 3 directories *images, sounds* and *videos*. Those need to be located at the root of the project.
+
+## How to build the structure
+
+![Build](images/montage.png)
