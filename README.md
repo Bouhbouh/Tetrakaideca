@@ -32,6 +32,8 @@ npm install
 
 To install the Leap Motion on your desktop, please refer to the [documentation](https://www.leapmotion.com/setup/desktop/) on the official website of the device.
 
+After that, there is two configuration, if you want to use our program on the same device that the one the leap is connected to, you have nothing to change. Howewer, if you want to connect the leap on a computer and display our program on a tablet for example, you first need to connect the two device to the same LAN network, then on the device that is connected to the leap, you need to modify the line 28 of pont.py to remplace the IP by the one of the device and run it. Then you need to modify index_leap_motion.html on line 188 to remplace localhost and the port by the one in the line 28 of pont.py. Now you can run index_leap_motion.html on any device that is connected to the LAN on the leap's computer.
+
 #### Setup the environment and have fun
 
 Now that everything is installed we need to setup the environment for the use of the web application. To do so, we first need to be working on a private WiFi and check our IP address with the following command :
